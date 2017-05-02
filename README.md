@@ -2,11 +2,6 @@
 
 ## Repository for solutions to problems at kattis.com
 
-   Completed  | Problem	      | 
-------------- | ------------- |
-FizzBuzz      |               |
-
-
- In Progress  | Problem	      | 
-------------- | ------------- |
-              |               |
+   Completed  | Problem	                                               | 
+------------- | -------------                                          |
+FizzBuzz      |  https://open.kattis.com/problems/fizzbuzz             |
