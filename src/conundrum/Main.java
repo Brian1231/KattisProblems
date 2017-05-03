@@ -7,13 +7,13 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
        
-		/*String word = "";
+		String word = "";
         while(s.hasNext()){
             word = s.next();
         }
-        s.close();*/
+        s.close();
 
-		String word = "RUBSLFBEF";
+		//String word = "RUBSLFBEF";
 		String target = "PER";
 		char[] arr = word.toCharArray();
 		
