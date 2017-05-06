@@ -67,8 +67,8 @@ public class phoneGroup {
 			if(first[i] == second[i]) collisionCount++;
 		}
 		
-		if(collisionCount == smallerSize) return true;
+		return collisionCount >= smallerSize;
 		
-		return false;
+		
 	}
 }
