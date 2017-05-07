@@ -87,14 +87,22 @@ public class Main {
 			if(walter.contains(str) || jesse.contains(str))
 				itemCount--;
 		}
+		
+		//Check if either walt or jesse has a suspicious pair
+		boolean susFlag = false;
+		for(String[] pair : suspiciousPairs){
+			if((walter.contains(pair[0]) && walter.contains(pair[1])) || (jesse.contains(pair[0]) && jesse.contains(pair[1]))){
+				susFlag = true;
+			}
+		}
 
-		if(itemCount == 0){
+		if(itemCount == 0 && !susFlag){
 			//Print arrays
 			System.out.println("Walter: ");
-			printList(walter);
+			printListProper(walter);
 			System.out.println();
 			System.out.println("Jesse: ");
-			printList(jesse);
+			printListProper(jesse);
 		}
 		else
 			System.out.println("Impossible");
