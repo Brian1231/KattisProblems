@@ -66,9 +66,7 @@ public class phoneGroup {
 		for(int i=0;i<smallerSize;i++){
 			if(first[i] == second[i]) collisionCount++;
 		}
-		
+	
 		return collisionCount >= smallerSize;
-		
-		
 	}
 }
