@@ -4,6 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import javax.swing.Timer;
+
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -25,22 +30,22 @@ public class Main {
 		}
 		s.close();
 
-		printArray(cases);
-		System.out.println();
-		int ans = -1000;
+		//printArray(cases);
+		//System.out.println();
+		double ans = -1000;
+		
+		long startTime = System.currentTimeMillis();
 		
 		//Loop through cases
 		for(int i=0;i<N;i++){
-			System.out.println("\nCase: " + cases[i]);
 			
 			//Loop through operators
 			for(int j=0;j<4;j++){
 				for(int k=0;k<4;k++){
 					for(int l=0;l<4;l++){
 						ans = calc(operators[j], operators[k], operators[l]);
-						System.out.println(ans);
 						if(ans == cases[i]){
-							System.out.println("4 " + operators[j] + " 4 " + operators[k] + " 4 " + operators[l] + " 4");
+							System.out.println("4 " + operators[j] + " 4 " + operators[k] + " 4 " + operators[l] + " 4 = " + cases[i]);
 							break;
 						}
 						if(ans == cases[i]) break;
@@ -50,55 +55,32 @@ public class Main {
 				if(ans == cases[i]) break;
 			}
 			if(ans != cases[i])
-				System.out.println("Impossible");
+				System.out.println("no solution");
 		}
+		
+		long endTime = System.currentTimeMillis();
+		long totalTime = ((endTime - startTime));
+		System.out.println("\nTime elapsed: " + totalTime);
 	}
 
-	private static int calc(char j, char k, char l){
-		//Loop through j
-		if(j == '+'){
-			return 4 + calc('0', k, l);
+	private static double calc(char j, char k, char l){
+		String operators = "4" + Character.toString(j) + "4" + Character.toString(k) + "4" + Character.toString(l) + "4";
+		//System.out.println(operators);
+		Object res = "";
+		int ans = 0;
+		try {
+			res =  new ScriptEngineManager().getEngineByName("js").eval(operators);
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(j == '-'){
-			return 4 - calc('0', k, l);
+		try{
+			ans = (int) res;
+		}catch(Exception e){
+			//e.printStackTrace();
 		}
-		else if(j == '*'){
-			return 4 * calc('0', k, l);
-		}
-		else if(j == '/'){
-			return 4 / calc('0', k, l);
-		}
-		else if(j == '0'){
-			//Loop through k
-			if(k == '+'){
-				return 4 + calc('0', '0', l);
-			}
-			else if(k == '-'){
-				return 4 - calc('0', '0', l);
-			}
-			else if(k == '*'){
-				return 4 * calc('0', '0', l);
-			}
-			else if(k == '/'){
-				return 4 / calc('0', '0', l);
-			}
-			else if(k == '0'){
-				//Loop through l
-				if(l == '+'){
-					return 4 + calc('0', '0', '0');
-				}
-				else if(l == '-'){
-					return 4 - calc('0', '0', '0'); //0
-				}
-				else if(l == '*'){
-					return 4 * calc('0', '0', '0');
-				}
-				else if(l == '/'){
-					return 4 / calc('0', '0', '0');
-				}
-			}
-		}
-		return 4;
+		return ans;
+		
 	}
 
 	private static void printArray(int[] array){
@@ -112,5 +94,4 @@ public class Main {
 		System.out.print("}");
 
 	}
-
 }
