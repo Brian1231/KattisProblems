@@ -44,10 +44,12 @@ public class Main {
 				for(int k=0;k<4;k++){
 					for(int l=0;l<4;l++){
 						ans = calc(operators[j], operators[k], operators[l]);
+						
 						if(ans == cases[i]){
 							System.out.println("4 " + operators[j] + " 4 " + operators[k] + " 4 " + operators[l] + " 4 = " + cases[i]);
 							break;
 						}
+						if(k == 2) break;
 						if(ans == cases[i]) break;
 					}
 					if(ans == cases[i]) break;
