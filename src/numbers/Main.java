@@ -28,7 +28,7 @@ public class Main {
 	private static String calc(int N) {
 		int number = (int) Math.pow((3 + Math.sqrt(5)), N);
 
-		System.out.println(number);
+		//System.out.println(number);
 
 		//Convert number to array of ints
 		String temp = Integer.toString(number);
@@ -52,13 +52,12 @@ public class Main {
 			//Need to remove digits
 			else{
 				int index = 2;
-				for(int i=numArray.length-1;i>0;i--){
+				for(int i=numArray.length-1;index>=0;i--){
 					newArray[index--] = numArray[i]; 
 				}
 			}
 			return arrayToString(newArray);
 		}
-
 		return arrayToString(numArray);
 	}
 
